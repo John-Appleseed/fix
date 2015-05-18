@@ -1,4 +1,4 @@
-# The fix [![Build Status](https://travis-ci.org/nvbn/thefix.svg)](https://travis-ci.org/nvbn/thefix)
+# fix
 
 **Aliases changed in 1.34.**
 
