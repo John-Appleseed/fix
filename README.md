@@ -1,4 +1,4 @@
-# The Fuck [![Build Status](https://travis-ci.org/nvbn/thefuck.svg)](https://travis-ci.org/nvbn/thefuck)
+# The fix [![Build Status](https://travis-ci.org/nvbn/thefix.svg)](https://travis-ci.org/nvbn/thefix)
 
 **Aliases changed in 1.34.**
 
@@ -13,7 +13,7 @@ Few examples:
 E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)
 E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
 
-➜ fuck
+➜ fix
 sudo apt-get install vim
 [sudo] password for nvbn:
 Reading package lists... Done
@@ -28,7 +28,7 @@ To push the current branch and set the remote as upstream, use
     git push --set-upstream origin master
 
 
-➜ fuck
+➜ fix
 git push --set-upstream origin master
 Counting objects: 9, done.
 ...
@@ -41,7 +41,7 @@ No command 'puthon' found, did you mean:
  Command 'python' from package 'python3' (main)
 zsh: command not found: puthon
 
-➜ fuck
+➜ fix
 python
 Python 3.4.2 (default, Oct  8 2014, 13:08:17)
 ...
@@ -54,7 +54,7 @@ git: 'brnch' is not a git command. See 'git --help'.
 Did you mean this?
 	branch
 
-➜ fuck
+➜ fix
 git branch
 * master
 ```
@@ -66,7 +66,7 @@ git branch
 Did you mean this?
          repl
 
-➜ fuck
+➜ fix
 lein repl
 nREPL server started on port 54848 on host 127.0.0.1 - nrepl://127.0.0.1:54848
 REPL-y 0.3.1
@@ -81,7 +81,7 @@ If you are scared to blindly run the changed command, there is a `require_confir
 E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)
 E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
 
-➜ fuck
+➜ fix
 sudo apt-get install vim [Enter/Ctrl+C]
 [sudo] password for nvbn:
 Reading package lists... Done
@@ -96,40 +96,40 @@ Reading package lists... Done
 
 ## Installation
 
-Install `The Fuck` with `pip`:
+Install `The fix` with `pip`:
 
 ```bash
-sudo pip install thefuck
+sudo pip install thefix
 ```
 
-[Or using an OS package manager (OS X, Ubuntu, Arch).](https://github.com/nvbn/thefuck/wiki/Installation)
+[Or using an OS package manager (OS X, Ubuntu, Arch).](https://github.com/nvbn/thefix/wiki/Installation)
 
 And add to the `.bashrc` or `.bash_profile`(for OSX):
 
 ```bash
-alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
+alias fix='eval $(thefix $(fc -ln -1)); history -r'
 # You can use whatever you want as an alias, like for Mondays:
-alias FUCK='fuck'
+alias fix='fix'
 ```
 
 Or in your `.zshrc`:
 
 ```bash
-alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+alias fix='eval $(thefix $(fc -ln -1 | tail -n 1)); fc -R'
 ```
 
 If you are using `tcsh`:
 ```tcsh
-alias fuck 'set fucked_cmd=`history -h 2 | head -n 1` && eval `thefuck ${fucked_cmd}`'
+alias fix 'set fixed_cmd=`history -h 2 | head -n 1` && eval `thefix ${fixed_cmd}`'
 ```
 
-Alternatively, you can redirect the output of `thefuck-alias`:
+Alternatively, you can redirect the output of `thefix-alias`:
 
 ```bash
-thefuck-alias >> ~/.bashrc
+thefix-alias >> ~/.bashrc
 ```
 
-[Or in your shell config (Bash, Zsh, Fish, Powershell).](https://github.com/nvbn/thefuck/wiki/Shell-aliases)
+[Or in your shell config (Bash, Zsh, Fish, Powershell).](https://github.com/nvbn/thefix/wiki/Shell-aliases)
 
 Changes will be available only in a new shell session.
 
@@ -137,12 +137,12 @@ Changes will be available only in a new shell session.
 ## Update
 
 ```bash
-sudo pip install thefuck --upgrade
+sudo pip install thefix --upgrade
 ```
 
 ## How it works
 
-The Fuck tries to match a rule for the previous command, creates a new command
+The fix tries to match a rule for the previous command, creates a new command
 using the matched rule and runs it. Rules enabled by default are as follows:
 
 * `brew_unknown_command` &ndash; fixes wrong brew commands, for example `brew docto/brew doctor`;
@@ -184,7 +184,7 @@ Bundled, but not enabled by default:
 ## Creating your own rules
 
 For adding your own rule you should create `your-rule-name.py`
-in `~/.thefuck/rules`. Rule should contain two functions:
+in `~/.thefix/rules`. Rule should contain two functions:
 `match(command: Command, settings: Settings) -> bool`
 and `get_new_command(command: Command, settings: Settings) -> str`.
 Also the rule can contain optional function
@@ -193,7 +193,7 @@ optional boolean `enabled_by_default`
 
 `Command` has three attributes: `script`, `stdout` and `stderr`.
 
-`Settings` is a special object filled with `~/.thefuck/settings.py` and values from env, [more](#settings).
+`Settings` is a special object filled with `~/.thefix/settings.py` and values from env, [more](#settings).
 
 Simple example of the rule for running script with `sudo`:
 
@@ -215,14 +215,14 @@ def side_effect(command, settings):
 priority = 1000  # Lower first
 ```
 
-[More examples of rules](https://github.com/nvbn/thefuck/tree/master/thefuck/rules),
-[utility functions for rules](https://github.com/nvbn/thefuck/tree/master/thefuck/utils.py).
+[More examples of rules](https://github.com/nvbn/thefix/tree/master/thefix/rules),
+[utility functions for rules](https://github.com/nvbn/thefix/tree/master/thefix/utils.py).
 
 ## Settings
 
-The Fuck has a few settings parameters which can be changed in `~/.thefuck/settings.py`:
+The fix has a few settings parameters which can be changed in `~/.thefix/settings.py`:
 
-* `rules` &ndash; list of enabled rules, by default `thefuck.conf.DEFAULT_RULES`;
+* `rules` &ndash; list of enabled rules, by default `thefix.conf.DEFAULT_RULES`;
 * `require_confirmation` &ndash; requires confirmation before running new command, by default `False`;
 * `wait_command` &ndash; max amount of time in seconds for getting previous command output;
 * `no_colors` &ndash; disable colored output;
@@ -240,26 +240,26 @@ priority = {'sudo': 100, 'no_command': 9999}
 
 Or via environment variables:
 
-* `THEFUCK_RULES` &ndash; list of enabled rules, like `DEFAULT_RULES:rm_root` or `sudo:no_command`;
-* `THEFUCK_REQUIRE_CONFIRMATION` &ndash; require confirmation before running new command, `true/false`;
-* `THEFUCK_WAIT_COMMAND` &ndash; max amount of time in seconds for getting previous command output;
-* `THEFUCK_NO_COLORS` &ndash; disable colored output, `true/false`;
-* `THEFUCK_PRIORITY` &ndash; priority of the rules, like `no_command=9999:apt_get=100`,
+* `THEfix_RULES` &ndash; list of enabled rules, like `DEFAULT_RULES:rm_root` or `sudo:no_command`;
+* `THEfix_REQUIRE_CONFIRMATION` &ndash; require confirmation before running new command, `true/false`;
+* `THEfix_WAIT_COMMAND` &ndash; max amount of time in seconds for getting previous command output;
+* `THEfix_NO_COLORS` &ndash; disable colored output, `true/false`;
+* `THEfix_PRIORITY` &ndash; priority of the rules, like `no_command=9999:apt_get=100`,
 rule with lower `priority` will be matched first.
 
 For example:
 
 ```bash
-export THEFUCK_RULES='sudo:no_command'
-export THEFUCK_REQUIRE_CONFIRMATION='true'
-export THEFUCK_WAIT_COMMAND=10
-export THEFUCK_NO_COLORS='false'
-export THEFUCK_PRIORITY='no_command=9999:apt_get=100'
+export THEfix_RULES='sudo:no_command'
+export THEfix_REQUIRE_CONFIRMATION='true'
+export THEfix_WAIT_COMMAND=10
+export THEfix_NO_COLORS='false'
+export THEfix_PRIORITY='no_command=9999:apt_get=100'
 ```
 
 ## Developing
 
-Install `The Fuck` for development:
+Install `The fix` for development:
 
 ```bash
 pip install -r requirements.txt
